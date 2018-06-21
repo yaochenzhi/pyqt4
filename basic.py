@@ -1,0 +1,11 @@
+import sys
+from PyQt4 import QtGui
+
+
+app = QtGui.QApplication(sys.argv)
+window = QtGui.QWidget()
+window.setGeometry(500,500,500,500)
+window.setWindowTitle("Hello PyQt4!")
+window.show()
+
+sys.exit(app.exec_())
