@@ -40,7 +40,40 @@ class Window(QtGui.QMainWindow):
         self.toolbar = self.addToolBar("Extraction")
         self.toolbar.addAction(extractAction)
 
+
+        self.checkBox = QtGui.QCheckBox("Enlarge Window", self)
+        self.checkBox.move(300, 0)
+        # self.checkBox.toggle()
+        self.checkBox.stateChanged.connect(self.enlarge_window)
+
+
+        self.progress = QtGui.QProgressBar(self)
+        self.progress.setGeometry(300, 200, 200, 20)
+
+        self.btn = QtGui.QPushButton("Download", self)
+        self.btn.move(300, 300)
+        self.btn.clicked.connect(self.download)
+
+
         self.show()
+
+
+    def download(self):
+        self.completed = 0
+
+        while self.completed < 100:
+            self.completed += 0.0001
+            self.progress.setValue(self.completed)
+
+
+
+    def enlarge_window(self):
+        if self.checkBox.isChecked():
+            print("Checked")
+            self.setGeometry(500,500,1000,500)
+        else:
+            print("Uncheked")
+            self.setGeometry(500,500,1000,100)
 
     def close_application(self):
         choice = QtGui.QMessageBox.question(self, "Extract!",

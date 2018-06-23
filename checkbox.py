@@ -40,7 +40,22 @@ class Window(QtGui.QMainWindow):
         self.toolbar = self.addToolBar("Extraction")
         self.toolbar.addAction(extractAction)
 
+
+        self.checkBox = QtGui.QCheckBox("Enlarge Window", self)
+        self.checkBox.move(300, 0)
+        # self.checkBox.toggle()
+        self.checkBox.stateChanged.connect(self.enlarge_window)
+
+
         self.show()
+
+    def enlarge_window(self):
+        if self.checkBox.isChecked():
+            print("Checked")
+            self.setGeometry(500,500,1000,500)
+        else:
+            print("Uncheked")
+            self.setGeometry(500,500,1000,100)
 
     def close_application(self):
         choice = QtGui.QMessageBox.question(self, "Extract!",
